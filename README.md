@@ -15,9 +15,13 @@ options:
 ```
 
 # Example
-
+* targets from file
 ```
 python3 main.py -f found_websites.txt
+```
+* target from input
+```
+python3 main.py -u dp11.ir
 ```
 
 ![alt text](https://i.imgur.com/x97Pqnv.png)
