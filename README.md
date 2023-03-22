@@ -21,7 +21,7 @@ python3 main.py -f found_websites.txt
 ```
 * target from input
 ```
-python3 main.py -u http://dp11.ir
+python3 main.py -u http://localhost
 ```
 
 ![alt text](https://i.imgur.com/x97Pqnv.png)
