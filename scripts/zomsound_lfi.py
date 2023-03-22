@@ -32,7 +32,6 @@ def exploit(url):
                 "status": r.status_code,
                 "exploit": "CVE-2021-39316",
                 "vuln": "ZoomSounds <= 1.0.1 - Remote File Inclusion"
-
             })
             json_me(url, "CVE-2021-39316", found)
         else:

