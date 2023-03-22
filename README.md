@@ -1,4 +1,4 @@
-# Wordpress_Vulns
+# WP-killer
  vulnerability scanner for wordpress
 
 # Usage 
