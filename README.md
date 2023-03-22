@@ -17,7 +17,7 @@ options:
 # Example
 
 ```
-python3 main.py found_websites.txt
+python3 main.py -f found_websites.txt
 ```
 
 ![alt text](https://i.imgur.com/x97Pqnv.png)
